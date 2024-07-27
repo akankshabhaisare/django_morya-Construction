@@ -1,0 +1,75 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address and Phone Number Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        form {
+            max-width: 400px;
+            margin: 2em auto;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+        div {
+            margin-bottom: 1em;
+        }
+        label {
+            margin-bottom: .5em;
+            color: #333;
+            display: block;
+        }
+        input, textarea {
+            border: 1px solid #ccc;
+            font: 1em sans-serif;
+            width: 100%;
+            box-sizing: border-box;
+            padding: .5em;
+            margin-top: .5em;
+        }
+        input:focus, textarea:focus {
+            border-color: #007BFF;
+        }
+        button {
+            padding: 0.7em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: .3em;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:focus {
+            outline: none;
+        }
+        @media (max-width: 600px) {
+            form {
+                padding: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Add Details</h1>
+    <form action="/submit" method="post">
+        <div>
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" placeholder="Enter your address" name="uadd"></textarea>
+        </div>
+        <div>
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" id="phone_number" name="phone_number" placeholder="Enter your phone number" name="uphone">
+        </div>
+        <div>
+            <button type="submit" >Submit</button>
+        </div>
+       

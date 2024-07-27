@@ -1,0 +1,240 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+</head>
+ <style>
+        *{
+            font-family: 'Popppins',sans-serif;
+
+        }
+        .wrapper{
+            background: white;
+            padding: 0 20px 0 20px;
+            margin-left: 200px;
+            margin-right: auto;
+            margin-top: 50px;
+             
+        }
+        .main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .row{
+            width: 900px;
+            height: 550px;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+
+
+
+        }
+
+        .side-image{
+            background-image: url(/static/images/draw1.jpg);
+            background-position: cover;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            border-radius: 10px 0 0 10px;
+        }
+
+        img{
+            width: 35px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+        .text{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .text p{
+            color: #fff;
+            font-size: 18px;
+        }
+        i{
+            font-weight: 400;
+            font-size: 15px;
+        }
+        .right{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .input-box{
+            width: 330px;
+            box-sizing: border-box;
+        }
+        .input-box header{
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 45px;
+        }
+        .input-field{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 0 10px 0 10px;
+        }
+        .input{
+            height: 45px;
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            outline: none;
+            margin-bottom: 20px;
+            color: #40414a;
+        }
+        .input-box .input-field label{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            pointer-events: none;
+            transition: .5s;
+        }
+        .input-feild .input:focus ~ label{
+            top: -10px;
+            font-size: 13px;
+        }
+        .input-feild .input:valid ~ label{
+
+            top: -10px;
+            font-size: 13px;
+            color: #5d5076;
+        }
+        .input-feild .input:focus , .input-feild .input:valid {
+            border-radius: 1px solid #743ae1;
+
+        }
+        .submit{
+            border: none;
+            outline: none;
+            height: 45px;
+            background: #ececec;
+            border-radius: 5px;
+            transition: .4s;
+
+        }
+        .submit:hover{
+            background: rgba(37, 95, 156, 0.9);
+            color: #fff;
+        }
+        .signin{
+            text-align: center;
+            font-size: small;
+            margin-top: 25px;
+        }
+        .span a{
+            text-decoration: none;
+            font-weight: 700;
+            color: #000;
+
+        }
+        span a:hover{
+            text-decoration: underline;
+            color: #000;
+        }
+        @media only screen and (max-width:768px){
+            .side-image{
+                border-radius: 10px 10px 0 0;
+            }
+            img{
+                width: 35px;
+                position: absolute;
+                top: 20px;
+                left: 47%;
+
+            }
+            .text{
+                position: absolute;
+                top: 70%;
+                text-align: center;
+            }
+            .text p,i{
+                font-size: 17px;
+            }
+            .row{
+                max-width: 420px;
+                width: 100%;
+            }
+        }
+    </style>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 side-image">
+                 <!-----------image--------->
+                 <img src="{% static 'images/draw2.webp' %}" alt="">
+                 <div class="text">
+                    <p style="color: rgb(66, 63, 215);"><b>Join with Us</b></p>
+                 </div>
+                </div>
+                <div class="col-md-6 right ">
+                    {% if errmsg %}
+
+                    <div class="alert alert-danger" role="alert">
+                      {{errmsg}}
+      
+                    </div>
+      
+                    {% endif %}
+      
+                    {% if success %}
+      
+                    <div class="alert alert-success" role="alert">
+                      {{success}}
+      
+                    </div>
+      
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+                     <div class="input-box">
+                        <header style="background-color: white;">Register</header>
+                        <div class="input-feild">
+                            <input type="text" class="input" id="name" placeholder="Enter Name:" required name="uname">
+                            <label for="password">Name</label>
+                        </div>
+                        <div class="input-feild">
+                            <input type="text" class="input" id="email" placeholder="abc@gmail.com" required autocomplete="off" name="uemail">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-feild">
+                            <input type="password" class="input" id="password" placeholder="password" required name="pass" >
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="input-feild">
+                            <input type="password" class="input" id="password" placeholder="Confirm Password" required name="cpass">
+                            <label for="password"> Confirm Password</label>
+                        </div>
+                        <div class="input-feild">
+                            <input type="submit" class="submit" value="Register">
+                           
+                        </div>
+                        <div class="Signin">
+                            <span>Already have an account? <a href="/login">Login  </a></span>
+                        </div>
+                     </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+</body>
+</html>

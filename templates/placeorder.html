@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+
+<div class="row mt-4 p-3" ><!--main section start-->
+  <div class="row btn-danger text-white">
+    <h4>ORDER SUMMERY</h4>
+
+</div>
+          <div class="col-md-9"><!--user detail & prodeuct detail-->
+              <div class="row-mt-2 shadow p-3"><!--customer detail start-->
+                  <h5>Customer Detail</h5><hr>
+                  {% for i in data %}
+                  {% if forloop.counter == 1 %}
+                  
+
+                  <p><strong>Customer Name :</strong>{{i.uid.name}}</p>
+                  <p><strong>Customer Email :</strong>{{i.uid.email}}</p>
+                  <!-- <p><strong>Customer number :</strong>Anonymous@examp</p>
+                  <p><strong>Customer Address:</strong>Anonymous@example.com</p> -->
+                  {% endif %}
+                  {% endfor %}
+
+              </div><!--customer detail end-->
+              {% for i in data %}
+              <div class="row mt-3  p-3 mx-auto shadow" ><!--product detail start-->
+                  <div class="col-md-5"><!--image Section start-->
+                  <img src="/morya/static/images/plans.jpg">
+                  </div><!--image section end-->
+                  <div class="col-md-7"><!--detail section start-->
+                    <p><strong>Product Name:</strong>{{i.pid.pname}}</p>
+                    
+                    <p><strong>Product Details:</strong>{{i.pid.pdetail}}</p>
+                    <p><strong>Price :</strong>{{i.pid.price}}</p>
+                    <p><strong>sq/ft:</strong>{{i.qty}}</p>
+                    <p><strong>Total price</strong>{{i.amt}}</p>
+                    <!-- <p><a href="#"><button class="btn btn-danger">Remove</button></a></p> -->
+
+                  </div><!--detail section end-->
+
+                </div><!--Product details end-->
+                {% endfor %}
+                <!-- <div class="row btn-danger text-white">
+                  <h4>ORDER SUMMERY</h4>
+            
+              </div> -->
+
+               
+            </div>
+
+            <div class="col-md-3"><!--price detail start-->
+              <div class="p-3 shadow">
+                 <h5>Price Details</h5><hr>
+                 <p><strong>Price ({{n}}items):</strong>Rs.{{total}}</p>
+                 <p><strong>Total Price</strong>RS:{{total}}</p>
+                 <p><a href="/makepayment"><button class="btn btn-danger"> Make Payment</button></a></p>
+              </div>
+         </div><!--Price detail end-->
+
+        </div><!--main section end-->
+
+
+        
+      
+
+ {% endblock 'main' %}        
+
+    
+         
+
+
+
+        

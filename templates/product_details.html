@@ -1,0 +1,34 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<body>
+ 
+    <div class="row mt-4 p-3" ><!--main section start-->
+        <div class="col-md-9 mx-auto">
+          {% for i in data %}
+            <div class="row">
+                <div class="col-md-5"><!--image Section start-->
+                <img src="static/images/basic.jpg">
+                </div><!--image section end-->
+                <div class="col-md-7"><!--detail section start-->
+                  <p><strong>Plan Name:</strong>{{i.name}}</p>
+                  
+                  <p><strong>Product Details:</strong>{{i.pdetail}}</p>
+                  <p><strong>Price :</strong>{{i.price}}</p>
+                  <p>
+                    <a href="/addtocart/{{i.id}}"><button class="btn btn-danger">Add to Card</button></a>
+                    <a href="/cart"><button class="btn btn-danger">View cart</button></a>
+                    <a href="index.html"><button class="btn btn-danger">Shop More</button></a>
+                  </p>
+
+                </div><!--detail section end-->
+
+            </div>
+            {% endfor %}
+        </div>
+   </div><!--Main Secvtion End-->
+</body>
+</html>
+
+{% endblock 'main' %}

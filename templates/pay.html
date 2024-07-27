@@ -1,0 +1,124 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address and Phone Number Form</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+    form {
+        max-width: 400px;
+        margin: 2em auto;
+        padding: 1em;
+        border: 1px solid #ccc;
+        border-radius: 1em;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background: #fff;
+    }
+    div {
+        margin-bottom: 1em;
+    }
+    label {
+        margin-bottom: .5em;
+        color: #333;
+        display: block;
+    }
+    input, textarea {
+        border: 1px solid #ccc;
+        font: 1em sans-serif;
+        width: 100%;
+        box-sizing: border-box;
+        padding: .5em;
+        margin-top: .5em;
+    }
+    input:focus, textarea:focus {
+        border-color: #007BFF;
+    }
+    button {
+        padding: 0.7em;
+        color: #fff;
+        background-color: #007BFF;
+        border: none;
+        border-radius: .3em;
+        cursor: pointer;
+        width: 100%;
+    }
+    button:focus {
+        outline: none;
+    }
+    @media (max-width: 600px) {
+        form {
+            padding: 1em;
+        }
+    }
+</style>
+<body>
+
+<h1 style="text-align: center;">Add Details</h1>
+    <form action="/submit" method="post">
+        <div>
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" placeholder="Enter your address" name="uadd" required></textarea>
+        </div>
+        <div>
+            <label for="phone_number" >Phone Number:</label>
+            <input type="text" id="phone_number" name="phone_number" placeholder="Enter your phone number" name="uphone" required>
+        </div>
+        <!-- <div>
+            <button type="submit" >Submit</button>
+        </div> -->
+
+<button id="rzp-button1" style="height: 40px; width: 200px; margin-top: 40px;">Pay with Razorpay</button><br><br>
+   
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_HeYv5uvRUwSNEa", // Enter the Key ID generated from the Dashboard
+    "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature)
+        window.location.href='/paymentsuccess'
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+</body>
+</html>
+
